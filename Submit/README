@@ -1,0 +1,10 @@
+RUN INSTRUCTIONS:
+The Executable is iosched
+
+1.  cd code
+2.  make
+3.  cp iosched ../TestData
+4.  ./runit.sh ./KeeyonOutputs ./iosched
+5.  ./gradeit.sh ./KeeyonOUtputs .
+
+There are your results :^)
