@@ -33,6 +33,7 @@ void Organizer::ProcessInstructions(char* algorithm) {
     SSTFalg sstf_alg;
     SCANalg scan_alg;
     CSCANalg cscan_alg;
+    FSCANalg fscan_alg;
 
     ReplaceAlg * replacement_alg = &fifo_alg;
     
@@ -63,6 +64,7 @@ void Organizer::ProcessInstructions(char* algorithm) {
     //FSCAN
     else if(alg_string == "f")
     {
+        replacement_alg = &fscan_alg;
     }
 
     while(!all_instructions.empty() || disk_processing)
@@ -75,7 +77,7 @@ void Organizer::ProcessInstructions(char* algorithm) {
         {
             if (all_instructions[i].incoming_time == current_time)
             {
-                replacement_alg->AddInstruction(all_instructions[i]);
+                replacement_alg->AddInstruction(all_instructions[i], disk_processing);
                 printf("%d:  %4d add %d\n",
                         current_time,
                         all_instructions[i].index,
@@ -109,7 +111,7 @@ void Organizer::ProcessInstructions(char* algorithm) {
             all_instructions_stats[operating_inst.index].finish_time = current_time;
         } 
 
-        bool RQueueAvail = !replacement_alg->ReadyQueue.empty();
+        bool RQueueAvail = replacement_alg->RQueueAvail();
         
         // If not running but have ready, start new operation 
         if (!disk_processing && RQueueAvail)

@@ -3,13 +3,17 @@
 ReplaceAlg::ReplaceAlg(){
 }
 
-void ReplaceAlg::AddInstruction(Instruction inst){
+void ReplaceAlg::AddInstruction(Instruction inst, bool is_running){
     ReadyQueue.push_back(inst);
 }
 
 Instruction ReplaceAlg::GetInstruction(int current_track_pos) {
     cout << "Please never print this" << endl;
     return Instruction(0, 0, 0);
+}
+
+bool ReplaceAlg::RQueueAvail(){
+    return !ReadyQueue.empty();
 }
 
 int ReplaceAlg::FindSimilarInstIndex(deque<Instruction> All_Instructions, Instruction inst){
