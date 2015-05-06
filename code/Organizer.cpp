@@ -32,6 +32,7 @@ void Organizer::ProcessInstructions(char* algorithm) {
     FIFOalg fifo_alg;
     SSTFalg sstf_alg;
     SCANalg scan_alg;
+    CSCANalg cscan_alg;
 
     ReplaceAlg * replacement_alg = &fifo_alg;
     
@@ -56,6 +57,7 @@ void Organizer::ProcessInstructions(char* algorithm) {
     //CSCAN
     else if(alg_string == "c")
     {
+        replacement_alg = &cscan_alg;
     }
 
     //FSCAN

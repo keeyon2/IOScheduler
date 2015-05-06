@@ -15,6 +15,7 @@
 #include "FIFOalg.h"
 #include "SSTFalg.h"
 #include "SCANalg.h"
+#include "CSCANalg.h"
 
 using std::cout;
 using std::endl;
