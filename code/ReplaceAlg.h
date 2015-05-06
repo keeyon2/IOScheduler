@@ -14,7 +14,9 @@ class ReplaceAlg
     public:
         deque<Instruction> ReadyQueue;
         void AddInstruction(Instruction inst);
-        virtual Instruction GetInstruction();
+        //virtual int GetInstruction(deque<Instruction> All_Instructions) = 0;
+        virtual Instruction GetInstruction() = 0;
+        int FindSimilarInstIndex(deque<Instruction> All_Instructions, Instruction inst);
         ReplaceAlg();
 };
 

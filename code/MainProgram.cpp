@@ -11,6 +11,7 @@
 #include "Organizer.h"
 #include "Instruction.h"
 #include "ReplaceAlg.h"
+#include "FIFOalg.h"
 
 using std::cout;
 using std::endl;
@@ -89,6 +90,7 @@ void ReadInstructions(deque<Instruction>* instrs, char* in_file){
     stream.open(in_file);
     int time = 0;
     int track = 0;
+    int counter = 0;
     string line;
     char c;
 
@@ -103,8 +105,9 @@ void ReadInstructions(deque<Instruction>* instrs, char* in_file){
         {
             time = ExtractNumber(&stream);
             track = ExtractNumber(&stream);
-            Instruction temp_inst (time, track);
+            Instruction temp_inst (time, track, counter);
             instrs->push_back(temp_inst);
+            counter += 1;
         }
     }
 }
@@ -136,33 +139,13 @@ int main(int argc, char **argv)
         abort ();
       }
 
-
+    // Instructions
     char* input_file = argv[argc - 1];
     deque<Instruction> AllInstructions;
-    string alg_string = string(svalue); 
-
-    ReplaceAlg * operating_alg;
-    if (alg_string == "i")
-    {
-        //Rect rect;
-        //operating_alg = & rect;
-    }
-    else if (alg_string == "j")
-    {
-    }
-    else if(alg_string == "s")
-    {
-    }
-    else if(alg_string == "c")
-    {
-    }
-    else if(alg_string == "f")
-    {
-    }
-
     ReadInstructions(&AllInstructions, input_file);  
-    Organizer org(*operating_alg, AllInstructions);
-    
+
+    Organizer org(svalue, AllInstructions);
+     
     return 0;
     // Printing out to test
 }
