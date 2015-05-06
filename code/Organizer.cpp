@@ -20,57 +20,43 @@ Organizer::Organizer(char * algorithm, deque<Instruction> instructions)
     total_wait_time = 0;
 
     // Check if we add anything new
-    SetAlgorithm(algorithm);
     ProcessInstructions(algorithm); 
     PrintResults();
 
 } 
-
-void Organizer::SetAlgorithm(char* algorithm)
-{
-    /*
-    string alg_string = string(algorithm);
-
-    if (alg_string == "i")
-    {
-        FIFOalg fifo_alg;
-        replacement_alg = &fifo_alg;
-    }
-    else if (alg_string == "j")
-    {
-    }
-    else if(alg_string == "s")
-    {
-    }
-    else if(alg_string == "c")
-    {
-    }
-    else if(alg_string == "f")
-    {
-    }
-    */
-}
 
 void Organizer::ProcessInstructions(char* algorithm) {
 
     string alg_string = string(algorithm);
 
     FIFOalg fifo_alg;
+    SSTFalg sstf_alg;
 
     ReplaceAlg * replacement_alg = &fifo_alg;
+    
+    // FIFO
     if (alg_string == "i")
     {
         replacement_alg = &fifo_alg;
     }
+    
+    //SSTF
     else if (alg_string == "j")
     {
+        replacement_alg = &sstf_alg;
     }
+
+    //SCAN
     else if(alg_string == "s")
     {
     }
+
+    //CSCAN
     else if(alg_string == "c")
     {
     }
+
+    //FSCAN
     else if(alg_string == "f")
     {
     }
@@ -134,7 +120,7 @@ void Organizer::ProcessInstructions(char* algorithm) {
             Instruction current_instruction = all_instructions[replace_inst_ind];
             all_instructions.erase(all_instructions.begin() + replace_inst_ind);
             */
-            Instruction current_instruction = replacement_alg->GetInstruction();
+            Instruction current_instruction = replacement_alg->GetInstruction(current_track);
 
             cout << current_time << ":     " << current_instruction.index <<
                 " issue " << current_instruction.track << " " << current_track << endl;
@@ -152,6 +138,9 @@ void Organizer::ProcessInstructions(char* algorithm) {
             int seek_time = abs(current_track - current_instruction.track);
             next_free_time = current_time + seek_time;
             total_movement += seek_time;
+
+            if (seek_time == 0)
+                continue;
         }
 
         // Make sure at end we subtract 1 from this to compute total amount of steps

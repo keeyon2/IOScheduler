@@ -13,6 +13,7 @@
 #include "Instruction.h"
 #include "ReplaceAlg.h"
 #include "FIFOalg.h"
+#include "SSTFalg.h"
 
 using std::cout;
 using std::endl;
@@ -29,7 +30,6 @@ class Organizer
 
         ifstream stream;
 
-        //ReplaceAlg * replacement_alg;
         deque<Instruction> all_instructions;
 
         int current_time, total_movement, current_track,
@@ -44,7 +44,6 @@ class Organizer
         Organizer(char* algorithm, deque<Instruction> instructions);
         void ProcessInstructions(char* algorithm);
         void PrintResults();
-        void SetAlgorithm(char* algorithm);
 }; 
 
 
