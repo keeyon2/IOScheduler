@@ -13,6 +13,7 @@ class Instruction
         int track;
         int index;
         int start_time;
+        int finish_time;
 
         Instruction(int time, int track, int index);
         Instruction();

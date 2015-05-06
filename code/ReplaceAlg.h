@@ -3,13 +3,18 @@
 
 #include <iostream>
 #include <deque>
+#include <vector>
 #include <stdio.h>
 #include <stdlib.h>
+#include <algorithm>
 #include "Instruction.h"
 
 using std::deque;
+using std::vector;
 using std::cout;
 using std::endl;
+using std::sort;
+using std::reverse;
 
 class ReplaceAlg
 {

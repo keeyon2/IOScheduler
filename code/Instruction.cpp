@@ -10,6 +10,7 @@ Instruction::Instruction(int time, int track, int index)
     this->track = track;
     this->index = index;
     start_time = -1000;
+    finish_time = -1000;
 }
 
 void Instruction::PrintData()

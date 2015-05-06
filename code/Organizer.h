@@ -14,6 +14,7 @@
 #include "ReplaceAlg.h"
 #include "FIFOalg.h"
 #include "SSTFalg.h"
+#include "SCANalg.h"
 
 using std::cout;
 using std::endl;
@@ -31,6 +32,7 @@ class Organizer
         ifstream stream;
 
         deque<Instruction> all_instructions;
+        deque<Instruction> all_instructions_stats;
 
         int current_time, total_movement, current_track,
             max_wait_time, total_wait_time, next_free_time, 
